@@ -1,0 +1,349 @@
+.homepage {
+  display: flex;
+  flex-direction: column; /* Tata letak vertikal */
+  min-height: 100vh; /* Tinggi minimal halaman */
+  justify-content: space-between; /* Elemen atas dan bawah tersebar */
+}
+
+/* Header Section */
+.header {
+  background-color: #0A66A0;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
+}
+
+/* Logo Style */
+.logo-image {
+  width: 35px;
+  height: auto;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+}
+
+/* Search Form */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: 500px;
+}
+
+/* Gambar Menu */
+.menu-icon {
+  width: 20px;
+  height: auto;
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Search Input */
+.search-input {
+  padding: 0.5rem;
+    padding-left: 55px; /* Memberikan ruang antara gambar menu dan teks */
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    width: 100%; /* Mengisi sisa ruang yang tersedia */
+    height: 60px; /* Tinggi 70px */
+    transition: border-color 0.3s;
+    font-size: 1.2rem; /* Menambah ukuran font agar lebih besar */
+    padding-right: 35px; /* Memberikan ruang di sisi kanan untuk ikon search */
+    color : black;
+    background-color: white;
+}
+
+/* Gambar Search */
+.search-icon {
+  width: 20px;
+  height: auto;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Fokus pada search input */
+.search-input:focus {
+  border-color: #0A66A0;
+}
+
+/* Saldo Card */
+.saldo-card {
+  background-color: #0A66A0; /* Biru */
+  color: white;
+  padding: 1rem;
+  border-radius: 30px;
+  width: 650px;
+  position: absolute;
+  top: 120px; /* Posisikan di bawah header */
+  left: 30px; /* Jarak dari kiri */
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.5); /* Shadow */
+  display: flex;
+  flex-direction: column; /* Kolom untuk saldo title dan kontainer amount + ikon */
+  gap: 10px;
+}
+
+/* Total Saldo Title */
+.saldo-title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: left;
+  width: 100%;
+}
+
+/* Kontainer untuk Amount dan Ikon */
+.saldo-content {
+  display: flex;
+  align-items: center; /* Vertikal rata tengah */
+  justify-content: space-between; /* Spasi antara amount dan ikon */
+  gap: 10px; /* Spasi antar elemen */
+}
+
+/* Saldo Amount */
+.saldo-amount {
+  background-color: white;
+  color: #000000;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  width: 300px;
+  font-weight: bold;
+  font-size: 1.7rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Ikon */
+.saldo-icons {
+  display: flex;
+  gap: 20px; /* Spasi antar ikon */
+  align-items: center; /* Rata tengah secara vertikal */
+  justify-content: center; /* Pusatkan ikon dalam kontainer */
+}
+
+.saldo-icons > .icon-item {
+  display: flex;
+  flex-direction: column; /* Atur ikon dan teks secara vertikal */
+  align-items: center; /* Pusatkan teks di bawah ikon */
+  font-size: 2.5rem; /* Ukuran ikon */
+  cursor: pointer; /* Gaya kursor */
+}
+
+.icon-item .icon-label {
+  margin-top: 8px; /* Jarak antara ikon dan teks */
+  font-size: 0.875rem; /* Ukuran teks lebih kecil */
+  color: #ffffff; /* Warna teks */
+  text-align: center; /* Pusatkan teks */
+}
+
+/* Avatar Container */
+.avatar-container {
+  display: flex;
+  gap: 35px; /* Jarak antar-avatar */
+  position: absolute;
+  top: 130px; /* Sejajar dengan card saldo */
+  left: 750px; /* Posisi di kanan card saldo */
+  align-items: center;
+}
+
+/* Avatar Style */
+.avatar {
+  width: 130px; /* Ukuran avatar */
+  height: 130px; /* Ukuran avatar */
+  border-radius: 50%; /* Membuat avatar berbentuk bulat */
+  background-color: #ccc; /* Warna latar default jika gambar kosong */
+  overflow: hidden; /* Menyembunyikan kelebihan gambar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow pada avatar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transisi saat hover */
+}
+
+/* Avatar Image Style */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efek Hover pada Avatar */
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.additional-cards {
+  display: flex;
+  gap: 16px;
+  margin-top: 170px; /* Jarak dengan elemen di atasnya */
+  padding: 0 30px; /* Jarak dari kiri dan kanan */
+  justify-content: space-between; /* Rata antar-card */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  flex: 1; /* Agar semua card memiliki lebar yang sama */
+  max-width: calc((100% - 32px) / 3); /* Mengatur lebar maksimal card untuk 3 dalam satu baris */
+  text-align: start; /* Rata teks ke kiri */
+}
+
+.card-image {
+  width: 100%;
+  height: 250px; /* Tinggi gambar */
+  object-fit: cover; /* Menjaga proporsi gambar */
+  border-radius: 8px; /* Sudut membulat */
+  margin-bottom: 10px; /* Jarak antara gambar dan teks */
+}
+.card h3 {
+  margin-top: 0;
+  font-weight: bold; /* Teks tebal */
+}
+
+.new-card {
+  background-color: #0A66A0;
+  border-radius: 30px;
+  color: white;
+  padding: 15px;
+  margin: 20px auto; /* Untuk memusatkan secara horizontal */
+  max-width: 400px; /* Atur lebar maksimal */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opsional: bayangan */
+}
+
+.new-card h3 {
+  display: flex; /* Ubah h3 menjadi container fleksibel */
+  justify-content: center; /* Atur posisi ikon agar sejajar di tengah */
+  align-items: center; /* Sejajarkan ikon secara vertikal */
+  gap: 20px; /* Tambahkan jarak antar ikon */
+  font-size: 30px; /* Sesuaikan ukuran ikon */
+  margin: 0; /* Hilangkan margin default */
+}
+
+.new-card h3 svg {
+  color: white; /* Warna ikon putih sesuai dengan latar belakang */
+  cursor: pointer; /* Tambahkan pointer untuk ikon interaktif */
+  transition: transform 0.2s ease, color 0.2s ease; /* Efek transisi */
+}
+
+.new-card h3 svg:hover {
+  transform: scale(1.2); /* Perbesar ikon saat hover */
+  color: #ffd700; /* Ubah warna ikon saat hover */
+}
+
+
+/* Profile Card */
+.profile-card {
+  position: fixed;
+  top: 57%; /* Pusatkan card secara vertikal */
+  left: 80%; /* Pusatkan card secara horizontal */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 30px 20px; /* Sesuaikan padding */
+  width: 640px; /* Sesuaikan lebar card */
+  height: 680px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Profile Image */
+.profile-card .profile-pic {
+  width: 80px; /* Ukuran gambar profil */
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: white;
+  border: 4px solid white;
+  margin: 0 auto; /* Posisikan di tengah */
+  display: block;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* Nama pengguna */
+.profile-name {
+  font-weight: bold;
+  font-size: 18px; /* Ukuran lebih kecil */
+  margin-top: 10px; /* Jarak antara gambar dan nama */
+}
+
+/* Info pengguna */
+.profile-info {
+  font-size: 14px; /* Ukuran lebih kecil untuk nomor dan ID */
+  margin-top: 5px; /* Jarak antar info */
+  color: #555; /* Warna teks lebih soft */
+  word-wrap: break-word; /* Pastikan teks panjang tidak keluar */
+}
+
+/* History Card */
+.history-card {
+  position: fixed;
+  top: 56%; /* Pusatkan card secara vertikal */
+  left: 80%; /* Pusatkan card secara horizontal */
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px; /* Sesuaikan padding */
+  width: 640px; /* Sesuaikan lebar card */
+  height: 680px; /* Lebar lebih kecil dari profile card */
+  text-align: center;
+  z-index: 1000;
+  overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
+}
+
+/* Title for History Card */
+.history-card h3 {
+  font-weight: bold; /* Buat teks tebal */
+  font-size: 24px; /* Perbesar ukuran font */
+  color: #333; /* Gunakan warna gelap */
+  margin-bottom: 20px; /* Beri jarak di bawah teks */
+}
+
+
+/* Close Button for History */
+.history-card .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.history-card .close-btn:hover {
+  color: red;
+}

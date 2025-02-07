@@ -1,0 +1,222 @@
+/* Navbar Styles */
+.msgpage-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a66a0; /* Warna biru */
+  color: white;
+  padding: 1.5rem;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Bagian kiri navbar */
+.msgpage-navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Bagian tengah navbar */
+.msgpage-navbar-center {
+  flex: 1;
+  text-align: center;
+}
+
+.msgpage-navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Bagian kanan navbar */
+.msgpage-navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Icon style */
+.msgpage-navbar-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Kontainer Utama */
+.msgpage-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* Konten Utama */
+.msgpage-content {
+  display: flex;
+  flex: 1;
+}
+
+/* Section Kontak */
+.msgpage-contacts {
+  width: 25%;
+  background-color: white;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Pencarian */
+.msgpage-search {
+  margin-bottom: 1rem;
+}
+
+.msgpage-search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+/* Daftar Kontak */
+.msgpage-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.msgpage-contact-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.msgpage-contact-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Avatar */
+.msgpage-contact-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+/* Info Kontak */
+.msgpage-contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.msgpage-contact-name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.msgpage-contact-status {
+  font-size: 0.85rem;
+  color: gray;
+}
+
+.msgpage-contact-status.online {
+  color: green;
+}
+
+.msgpage-contact-status.offline {
+  color: red;
+}
+
+/* Avatar Icon */
+.msgpage-contact-avatar-icon {
+  font-size: 40px;
+  color: #0a66a0; /* Warna biru */
+  margin-right: 1rem;
+}
+
+/* Divider antar kontak */
+.msgpage-divider {
+  border: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2); /* Abu-abu transparan */
+  margin: 0.5rem 0; /* Jarak antar divider */
+}
+
+/* Bagian Chat */
+.msgpage-chat-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 75%; /* Lebar penuh untuk area chat */
+}
+
+.msgpage-chat-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  background-color: white; /* Opsional, menambahkan warna latar */
+  width: 100%; /* Pastikan header memenuhi layar bagian kanan */
+  box-sizing: border-box; /* Pastikan padding tidak memengaruhi lebar */
+}
+
+.msgpage-chat-avatar-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.msgpage-chat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.msgpage-chat-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  width: 100%; /* Pastikan body memenuhi layar bagian kanan */
+  box-sizing: border-box;
+}
+
+.msgpage-chat-input-container {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  width: 100%; /* Pastikan input container memenuhi layar bagian kanan */
+  box-sizing: border-box;
+}
+
+.msgpage-chat-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.msgpage-chat-send-btn {
+  background-color: #005eb8; /* Warna biru */
+  color: white; /* Warna ikon */
+  border: none; /* Hapus border */
+  border-radius: 50%; /* Membentuk tombol bulat */
+  width: 48px; /* Ukuran tombol */
+  height: 48px; /* Sama dengan lebar untuk membuat lingkaran */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  transition: transform 0.2s ease-in-out; /* Efek animasi hover */
+}
+
+.msgpage-chat-send-btn:hover {
+  transform: scale(1.1); /* Perbesar sedikit saat hover */
+}
+
+.msgpage-chat-send-icon {
+  font-size: 24px; /* Ukuran ikon */
+}
+
+/* Styling kontak yang dipilih */
+.msgpage-contact-item.selected {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-left: 4px solid #007bff;
+}
