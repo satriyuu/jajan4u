@@ -3,13 +3,14 @@
   flex-direction: column; /* Tata letak vertikal */
   min-height: 100vh; /* Tinggi minimal halaman */
   justify-content: space-between; /* Elemen atas dan bawah tersebar */
+  overflow-y: auto;
 }
 
-/* Header Section */
 .header {
   background-color: #0A66A0;
   color: white;
-  padding: 1rem;
+  padding: 0.6rem 1rem; 
+  height: 70px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +21,7 @@
 
 /* Logo Style */
 .logo-image {
-  width: 35px;
+  width: 30px; /* Sesuaikan ukuran logo */
   height: auto;
 }
 
@@ -40,62 +41,62 @@
   width: 500px;
 }
 
-/* Gambar Menu */
-.menu-icon {
-  width: 20px;
+/* Menu & Search Icons */
+.menu-icon,
+.search-icon {
+  width: 15px; /* Sesuaikan ukuran icon */
   height: auto;
   position: absolute;
-  left: 25px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none;
+}
+
+.menu-icon {
+  left: 15px;
+}
+
+.search-icon {
+  right: 15px;
 }
 
 /* Search Input */
 .search-input {
   padding: 0.5rem;
-    padding-left: 55px; /* Memberikan ruang antara gambar menu dan teks */
-    font-size: 1rem;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    width: 100%; /* Mengisi sisa ruang yang tersedia */
-    height: 60px; /* Tinggi 70px */
-    transition: border-color 0.3s;
-    font-size: 1.2rem; /* Menambah ukuran font agar lebih besar */
-    padding-right: 35px; /* Memberikan ruang di sisi kanan untuk ikon search */
-    color : black;
-    background-color: white;
+  padding-left: 45px; /* Kurangi padding kiri */
+  padding-right: 45px;
+  font-size: 1rem;
+  border-radius: 20px; /* Kurangi radius */
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 45px; /* Kurangi tinggi search input */
+  transition: all 0.3s ease;
+  color: black;
+  background-color: white;
 }
 
-/* Gambar Search */
-.search-icon {
-  width: 20px;
-  height: auto;
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+/* Efek hover dan active untuk search input */
+.search-input:hover {
+  border-color: #0A66A0;
+  box-shadow: 0 0 5px rgba(10, 102, 160, 0.2);
 }
 
-/* Fokus pada search input */
 .search-input:focus {
   border-color: #0A66A0;
+  box-shadow: 0 0 8px rgba(10, 102, 160, 0.3);
+  transform: scale(1.01);
 }
 
-/* Saldo Card */
 .saldo-card {
-  background-color: #0A66A0; /* Biru */
+  background-color: #0A66A0; 
   color: white;
   padding: 1rem;
   border-radius: 30px;
-  width: 650px;
-  position: absolute;
-  top: 120px; /* Posisikan di bawah header */
-  left: 30px; /* Jarak dari kiri */
-  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.5); /* Shadow */
+  width: 650px;  position: absolute;
+  top: 100px; 
+  left: 30px; 
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column; /* Kolom untuk saldo title dan kontainer amount + ikon */
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -121,10 +122,17 @@
   color: #000000;
   padding: 0.8rem 2rem;
   border-radius: 30px;
-  width: 300px;
+  width: 250px;
   font-weight: bold;
   font-size: 1.7rem;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Efek hover untuk saldo amount */
+.saldo-amount:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Ikon */
@@ -141,6 +149,40 @@
   align-items: center; /* Pusatkan teks di bawah ikon */
   font-size: 2.5rem; /* Ukuran ikon */
   cursor: pointer; /* Gaya kursor */
+  transition: all 0.3s ease;
+}
+
+.icon-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.icon-item:active::after {
+  transform: scale(1.5);
+  opacity: 0;
+  transition: 0s;
+}
+
+.icon-item:hover {
+  transform: translateY(-5px);
+}
+
+.icon-item:active {
+  transform: scale(0.95);
 }
 
 .icon-item .icon-label {
@@ -153,11 +195,13 @@
 /* Avatar Container */
 .avatar-container {
   display: flex;
-  gap: 35px; /* Jarak antar-avatar */
+  gap: 35px; 
   position: absolute;
-  top: 130px; /* Sejajar dengan card saldo */
-  left: 750px; /* Posisi di kanan card saldo */
+  top: 130px; 
+  left: 750px; 
   align-items: center;
+  scroll-behavior: smooth;
+  overflow-x: auto;
 }
 
 /* Avatar Style */
@@ -171,7 +215,8 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow pada avatar */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transisi saat hover */
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 /* Avatar Image Style */
@@ -181,10 +226,14 @@
   object-fit: cover;
 }
 
-/* Efek Hover pada Avatar */
+/* Efek hover untuk avatar */
 .avatar:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.avatar:active {
+  transform: scale(0.98);
 }
 
 .additional-cards {
@@ -200,18 +249,56 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  flex: 1; /* Agar semua card memiliki lebar yang sama */
-  max-width: calc((100% - 32px) / 3); /* Mengatur lebar maksimal card untuk 3 dalam satu baris */
-  text-align: start; /* Rata teks ke kiri */
+  flex: 1; 
+  max-width: calc((100% - 32px) / 3);
+  text-align: start; 
+  margin-top: 45px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 300px; 
+  overflow: hidden; 
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card:active {
+  transform: translateY(-2px);
+}
+
+.card-list {
+  border: 1px solid #D9D9D9; /* Menggunakan warna #D9D9D9 untuk border */
+  padding: 10px; /* Ruang di dalam border */
+  list-style-type: none; /* Menghilangkan bullet */
+  margin: 0; /* Menghilangkan margin default */
+}
+
+.card-list li {
+  padding: 5px 0; /* Ruang antar item */
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.card-list li:hover {
+  background-color: rgba(10, 102, 160, 0.05);
+  padding-left: 15px;
 }
 
 .card-image {
   width: 100%;
-  height: 250px; /* Tinggi gambar */
+  height: 200px; /* Tinggi gambar */
   object-fit: cover; /* Menjaga proporsi gambar */
   border-radius: 8px; /* Sudut membulat */
   margin-bottom: 10px; /* Jarak antara gambar dan teks */
+  transition: all 0.3s ease;
 }
+
+.card:hover .card-image {
+  transform: scale(1.02);
+}
+
 .card h3 {
   margin-top: 0;
   font-weight: bold; /* Teks tebal */
@@ -221,6 +308,7 @@
   background-color: #0A66A0;
   border-radius: 30px;
   color: white;
+  
   padding: 15px;
   margin: 20px auto; /* Untuk memusatkan secara horizontal */
   max-width: 400px; /* Atur lebar maksimal */
@@ -229,121 +317,714 @@
 }
 
 .new-card h3 {
-  display: flex; /* Ubah h3 menjadi container fleksibel */
-  justify-content: center; /* Atur posisi ikon agar sejajar di tengah */
-  align-items: center; /* Sejajarkan ikon secara vertikal */
-  gap: 20px; /* Tambahkan jarak antar ikon */
-  font-size: 30px; /* Sesuaikan ukuran ikon */
-  margin: 0; /* Hilangkan margin default */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
+  font-size: 30px; 
+  margin: 0; 
+  transition: all 0.3s ease;
 }
 
 .new-card h3 svg {
   color: white; /* Warna ikon putih sesuai dengan latar belakang */
   cursor: pointer; /* Tambahkan pointer untuk ikon interaktif */
-  transition: transform 0.2s ease, color 0.2s ease; /* Efek transisi */
+  transition: all 0.3s ease;
 }
 
 .new-card h3 svg:hover {
-  transform: scale(1.2); /* Perbesar ikon saat hover */
-  color: #ffd700; /* Ubah warna ikon saat hover */
+  transform: translateY(-3px);
+  color: #ffd700;
+}
+
+.new-card h3 svg:active {
+  transform: scale(0.9);
 }
 
 
-/* Profile Card */
 .profile-card {
   position: fixed;
-  top: 57%; /* Pusatkan card secara vertikal */
-  left: 80%; /* Pusatkan card secara horizontal */
-  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 20px; 
+  transform: translateY(-50%); 
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  padding: 30px 20px; /* Sesuaikan padding */
-  width: 640px; /* Sesuaikan lebar card */
-  height: 680px;
-  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 380px;
   z-index: 1000;
+  overflow-y: auto;
 }
 
-/* Profile Image */
-.profile-card .profile-pic {
-  width: 80px; /* Ukuran gambar profil */
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: white;
-  border: 4px solid white;
-  margin: 0 auto; /* Posisikan di tengah */
-  display: block;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+@keyframes slideIn {
+  from {
+    right: -400px;
+    opacity: 0;
+  }
+  to {
+    right: 20px;
+    opacity: 1;
+  }
 }
 
+.profile-card {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-header span {
+  font-size: 16px;
+  font-weight: 500;
+}
 
 /* Close Button */
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+  top: 24px;
+  right: 24px;
+  font-size: 20px;
+  color: #666;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Profile Content */
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.profile-value {
+  font-size: 14px;
   color: #333;
+}
+
+/* Sign Out Button */
+.sign-out-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.2s ease;
+}
+
+.sign-out-btn:hover {
+  background-color: #D80000;
+}
+
+.sign-out-btn:active {
+  transform: scale(0.98);
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic svg {
+  width: 24px;
+  height: 24px;
+  color: #666;
+}
+
+.history-card {
+  position: fixed;
+  top: 50%;
+  right: 20px; 
+  transform: translateY(-50%); 
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 380px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.history-header span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.history-icon {
+  font-size: 24px;
+  color: #666;
+}
+
+/* History Content */
+.history-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  transform: translateX(5px);
+  background-color: #f0f0f0;
+}
+
+.history-item-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 16px;
+}
+
+.history-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.history-details {
+  flex: 1;
+}
+
+.history-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.history-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.history-amount {
+  font-size: 16px;
+  font-weight: 500;
+  color: #FF0000;
+  white-space: nowrap;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 .close-btn:hover {
-  color: red;
-}
-
-/* Nama pengguna */
-.profile-name {
-  font-weight: bold;
-  font-size: 18px; /* Ukuran lebih kecil */
-  margin-top: 10px; /* Jarak antara gambar dan nama */
-}
-
-/* Info pengguna */
-.profile-info {
-  font-size: 14px; /* Ukuran lebih kecil untuk nomor dan ID */
-  margin-top: 5px; /* Jarak antar info */
-  color: #555; /* Warna teks lebih soft */
-  word-wrap: break-word; /* Pastikan teks panjang tidak keluar */
-}
-
-/* History Card */
-.history-card {
-  position: fixed;
-  top: 56%; /* Pusatkan card secara vertikal */
-  left: 80%; /* Pusatkan card secara horizontal */
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  padding: 20px; /* Sesuaikan padding */
-  width: 640px; /* Sesuaikan lebar card */
-  height: 680px; /* Lebar lebih kecil dari profile card */
-  text-align: center;
-  z-index: 1000;
-  overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
-}
-
-/* Title for History Card */
-.history-card h3 {
-  font-weight: bold; /* Buat teks tebal */
-  font-size: 24px; /* Perbesar ukuran font */
-  color: #333; /* Gunakan warna gelap */
-  margin-bottom: 20px; /* Beri jarak di bawah teks */
-}
-
-
-/* Close Button for History */
-.history-card .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
   color: #333;
 }
 
-.history-card .close-btn:hover {
-  color: red;
+/* Responsive Design */
+@media screen and (max-width: 1400px) {
+  .saldo-card {
+    width: 570px;
+    left: 25px;
+  }
+
+  .avatar-container {
+    left: 630px;
+    gap: 35px;
+  }
+
+  .avatar {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .saldo-card {
+    width: 450px;
+  }
+
+  .avatar-container {
+    left: 500px;
+    gap: 20px;
+  }
+
+  .saldo-amount {
+    width: 250px;
+    font-size: 1.5rem;
+  }
+
+  .saldo-icons {
+    gap: 15px;
+  }
+
+  .icon-item {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .homepage {
+    padding-bottom: 80px;
+  }
+
+  .search-form {
+    width: 350px;
+  }
+
+  .saldo-card {
+    width: 90%;
+    position: relative;
+    top: 20px;
+    left: 0;
+    margin: 20px auto;
+  }
+
+  .saldo-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .saldo-amount {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .saldo-icons {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .avatar-container {
+    position: relative;
+    top: 20px;
+    left: 0;
+    width: 90%;
+    margin: 0 auto;
+    overflow-x: auto;
+    padding: 15px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .avatar-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+
+  .additional-cards {
+    margin-top: 30px;
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .card {
+    max-width: calc(50% - 15px);
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0.8rem;
+  }
+
+  .search-form {
+    width: 280px;
+  }
+
+  .search-input {
+    height: 45px;
+    font-size: 0.9rem;
+    padding-left: 40px;
+  }
+
+  .menu-icon {
+    left: 15px;
+  }
+
+  .search-icon {
+    right: 15px;
+  }
+
+  .saldo-title {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+
+  .card-image {
+    height: 220px;
+  }
+
+  .new-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border-radius: 15px 15px 0 0;
+    z-index: 100;
+  }
+
+  .history-card {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+    padding: 20px;
+  }
+
+  .history-item {
+    padding: 12px;
+  }
+
+  .history-item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .history-title {
+    font-size: 14px;
+  }
+
+  .history-date {
+    font-size: 12px;
+  }
+
+  .history-amount {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .logo-image {
+    width: 28px;
+  }
+
+  .search-form {
+    width: 220px;
+  }
+
+  .search-input {
+    height: 40px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .menu-icon,
+  .search-icon {
+    width: 15px;
+  }
+
+  .saldo-card {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .saldo-title {
+    font-size: 1.4rem;
+  }
+
+  .saldo-amount {
+    font-size: 1.3rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .icon-item {
+    font-size: 1.8rem;
+  }
+
+  .icon-item .icon-label {
+    font-size: 0.75rem;
+  }
+
+  .avatar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .additional-cards {
+    padding: 0 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .new-card h3 {
+    gap: 30px;
+    font-size: 20px;
+  }
+
+  .profile-card {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transform: none;
+    border-radius: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      right: -100%;
+      opacity: 0;
+    }
+    to {
+      right: 0;
+      opacity: 1;
+    }
+  }
+
+  .history-item {
+    padding: 12px;
+    margin: 0;
+  }
+
+  .history-item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .history-title {
+    font-size: 14px;
+  }
+
+  .history-date {
+    font-size: 12px;
+  }
+
+  .history-amount {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .search-form {
+    width: 180px;
+  }
+
+  .saldo-amount {
+    font-size: 1.2rem;
+  }
+
+  .icon-item {
+    font-size: 1.6rem;
+  }
+
+  .avatar {
+    width: 65px;
+    height: 65px;
+  }
+
+  .new-card h3 {
+    gap: 25px;
+    font-size: 18px;
+  }
+}
+
+/* Fix untuk iOS Safari bottom bar */
+@supports (-webkit-touch-callout: none) {
+  .homepage {
+    padding-bottom: 100px;
+  }
+}
+
+/* Efek ripple untuk buttons */
+.icon-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.icon-item:active::after {
+  transform: scale(1.5);
+  opacity: 0;
+  transition: 0s;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.saldo-amount.loading {
+  animation: pulse 1.5s infinite;
+}
+
+.icon-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.icon-item:active::after {
+  transform: scale(1.5);
+  opacity: 0;
+  transition: 0s;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid #0A66A0;
+  outline-offset: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Menghilangkan scrollbar untuk seluruh aplikasi */
+* {
+  -ms-overflow-style: none;  /* Internet Explorer dan Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari dan Opera */
+}
+
+/* Tetap bisa scroll tapi scrollbar tidak terlihat */
+.homepage {
+  overflow-y: auto;
+}
+
+.avatar-container {
+  overflow-x: auto;
+}
+
+.profile-card,
+.history-card {
+  overflow-y: auto;
+}
+
+/* Animasi untuk history card */
+@keyframes slideInHistory {
+  from {
+    right: -400px;
+    opacity: 0;
+  }
+  to {
+    right: 20px;
+    opacity: 1;
+  }
+}
+
+.history-card {
+  animation: slideInHistory 0.3s ease-out forwards;
+}
+
+/* Responsive animation untuk mobile */
+@media screen and (max-width: 576px) {
+  @keyframes slideInHistory {
+    from {
+      right: -100%;
+      opacity: 0;
+    }
+    to {
+      right: 0;
+      opacity: 1;
+    }
+  }
 }

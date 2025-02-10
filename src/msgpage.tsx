@@ -25,6 +25,7 @@ const MsgPage: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+  const [isContactsVisible, setIsContactsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -58,7 +59,7 @@ const MsgPage: React.FC = () => {
       {/* Konten Utama */}
       <div className="msgpage-content">
         {/* Section Kontak */}
-        <div className="msgpage-contacts">
+        <div className={`msgpage-contacts ${isContactsVisible ? 'active' : ''}`}>
           <div className="msgpage-search">
             <input
               type="text"

@@ -23,6 +23,14 @@ import kantin from "./assets/kantin.jpg";
 import profile from "./assets/user.png";
 import hydro from "./assets/galon.jpeg";
 
+interface ProfileCardProps {
+  onClose: () => void;
+}
+
+interface HistoryCardProps {
+  onClose: () => void;
+}
+
 const Homepage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -146,30 +154,96 @@ const Homepage: React.FC = () => {
       </div>
 
       {isProfileOpen && (
-        <div className="profile-card">
-          <div className="card-content">
-            <span className="close-btn" onClick={toggleProfilePopup}>&times;</span>
-            <img src={profile} alt="Profile" className="profile-pic" />
-            <h3 className="profile-name">Raka Pratama</h3>
-            <p className="profile-info">(+62)1234567890</p>
-            <p className="profile-info">2223119123</p>
-          </div>
-        </div>
+        <ProfileCard onClose={toggleProfilePopup} />
       )}
 
       {isHistoryOpen && (
-        <div className="history-card">
-          <div className="card-content">
-            <span className="close-btn" onClick={toggleHistoryPopup}>&times;</span>
-            <h3>Aktifitas</h3>
-            <ul>
-              <li>Pembelian #1 - Rp. 20.000</li>
-              <li>Pembelian #2 - Rp. 50.000</li>
-              <li>Isi Saldo - Rp. 100.000</li>
-            </ul>
-          </div>
-        </div>
+        <HistoryCard onClose={toggleHistoryPopup} />
       )}
+    </div>
+  );
+};
+
+const ProfileCard = ({ onClose }: ProfileCardProps) => {
+  return (
+    <div className="profile-card">
+      <div className="profile-header">
+        <div className="profile-pic">
+          {/* Icon user */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <span>Profile</span>
+        <button className="close-btn" onClick={onClose}>×</button>
+      </div>
+
+      <div className="profile-content">
+        <div className="profile-item">
+          <span className="profile-label">Nama lengkap</span>
+          <span className="profile-value">Raka Pratama Domingoz</span>
+        </div>
+
+        <div className="profile-item">
+          <span className="profile-label">Nomor ponsel</span>
+          <span className="profile-value">(+62) 12345678</span>
+        </div>
+
+        <div className="profile-item">
+          <span className="profile-label">NIS</span>
+          <span className="profile-value">2223119599</span>
+        </div>
+
+        <div className="profile-item">
+          <span className="profile-label">Alamat email</span>
+          <span className="profile-value">rakaprtmd@example.com</span>
+        </div>
+
+        <div className="profile-item">
+          <span className="profile-label">Jenis kelamin</span>
+          <span className="profile-value">Laki-laki</span>
+        </div>
+
+        <button className="sign-out-btn">Sign Out</button>
+      </div>
+    </div>
+  );
+};
+
+const HistoryCard = ({ onClose }: HistoryCardProps) => {
+  return (
+    <div className="history-card">
+      <div className="history-header">
+        <div className="history-icon">
+          <MdHistory />
+        </div>
+        <span>Aktifitas</span>
+        <button className="close-btn" onClick={onClose}>×</button>
+      </div>
+
+      <div className="history-content">
+        <div className="history-item">
+          <div className="history-item-icon">
+            <img src={avatar1} alt="Kantin" />
+          </div>
+          <div className="history-details">
+            <div className="history-title">Kantin Op4t - Burger Burgar</div>
+            <div className="history-date">17 Januari 2025, 10:05</div>
+          </div>
+          <div className="history-amount">1 x Rp. 30.000</div>
+        </div>
+
+        <div className="history-item">
+          <div className="history-item-icon">
+            <img src={avatar5} alt="Koperasi" />
+          </div>
+          <div className="history-details">
+            <div className="history-title">Koperasi Op4t - Risoles Mamayo</div>
+            <div className="history-date">17 Januari 2025, 10:25</div>
+          </div>
+          <div className="history-amount">1 x Rp. 5.000</div>
+        </div>
+      </div>
     </div>
   );
 };
