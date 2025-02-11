@@ -230,76 +230,112 @@
 
 /* Responsive Design */
 @media screen and (max-width: 992px) {
-  .msgpage-contacts {
-    width: 280px;
+  .msgpage-container {
+    width: 100%;
+  }
+
+  .msgpage-contact-list {
+    width: 100%;
+  }
+
+  .msgpage-contact-item {
+    padding: 0.8rem;
+  }
+
+  .msgpage-contact-avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .msgpage-contact-name {
+    font-size: 0.95rem;
+  }
+
+  .msgpage-contact-message {
+    font-size: 0.85rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .msgpage-content {
-    position: relative;
+  .msgpage-navbar {
+    padding: 0.8rem;
   }
 
-  .msgpage-contacts {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 10;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+  .msgpage-search-input {
+    font-size: 0.9rem;
   }
 
-  .msgpage-contacts.active {
-    transform: translateX(0);
-  }
-
-  .msgpage-chat {
-    width: 100%;
-  }
-
-  .msgpage-contact-avatar-icon {
-    font-size: 3rem;
+  .msgpage-contact-avatar {
+    width: 40px;
+    height: 40px;
   }
 
   .msgpage-contact-name {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
-  .msgpage-contact-status {
-    font-size: 0.9rem;
+  .msgpage-contact-message {
+    font-size: 0.8rem;
+  }
+
+  .new-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #0A66A0;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .new-card h3 {
+    font-size: 20px;
+    gap: 1.5rem;
   }
 }
 
 @media screen and (max-width: 576px) {
   .msgpage-navbar {
-    padding: 0 1rem;
-    height: 60px;
+    padding: 0.6rem;
   }
 
-  .msgpage-navbar-icon {
-    font-size: 1.5rem;
-  }
-
-  .msgpage-chat-input-container {
-    padding: 0.8rem;
-  }
-
-  .msgpage-chat-input {
-    padding: 0.6rem 1rem;
-  }
-
-  .msgpage-chat-send-btn {
-    width: 40px;
-    height: 40px;
-  }
-
-  .msgpage-contact-avatar-icon {
-    font-size: 2.8rem;
+  .msgpage-search-input {
+    font-size: 0.85rem;
   }
 
   .msgpage-contact-item {
-    padding: 1rem;
+    padding: 0.7rem;
+  }
+
+  .msgpage-contact-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .msgpage-contact-name {
+    font-size: 0.85rem;
+  }
+
+  .msgpage-contact-message {
+    font-size: 0.75rem;
+  }
+
+  .msgpage-contact-time {
+    font-size: 0.7rem;
+  }
+
+  .msgpage-contact-status {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .new-card {
+    padding: 8px;
+  }
+
+  .new-card h3 {
+    font-size: 18px;
+    gap: 1.2rem;
   }
 }

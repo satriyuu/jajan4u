@@ -32,7 +32,6 @@
   box-shadow: none;
 }
 
-/* Search Form */
 .search-form {
   display: flex;
   align-items: center;
@@ -308,12 +307,11 @@
   background-color: #0A66A0;
   border-radius: 30px;
   color: white;
-  
   padding: 15px;
-  margin: 20px auto; /* Untuk memusatkan secara horizontal */
-  max-width: 400px; /* Atur lebar maksimal */
+  margin: 20px auto; 
+  max-width: 400px; 
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opsional: bayangan */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .new-card h3 {
@@ -327,8 +325,8 @@
 }
 
 .new-card h3 svg {
-  color: white; /* Warna ikon putih sesuai dengan latar belakang */
-  cursor: pointer; /* Tambahkan pointer untuk ikon interaktif */
+  color: white; 
+  cursor: pointer; 
   transition: all 0.3s ease;
 }
 
@@ -340,7 +338,6 @@
 .new-card h3 svg:active {
   transform: scale(0.9);
 }
-
 
 .profile-card {
   position: fixed;

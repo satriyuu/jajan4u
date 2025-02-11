@@ -63,7 +63,11 @@ const Homepage: React.FC = () => {
   };
 
   const navigateToMsgPage = () => {
-    navigate("/msgpage");  // Navigate to MsgPage when clicked
+    navigate("/msgpage");  
+  };
+
+  const navigateToKantin = () => {
+    navigate("/kantin");  // Pastikan path sesuai dengan route
   };
 
   if (loading) {
@@ -131,7 +135,7 @@ const Homepage: React.FC = () => {
           <h3>Koperasi</h3>
           <p>ATK, makanan, minuman, dll.</p>
         </div>
-        <div className="card">
+        <div className="card" onClick={navigateToKantin} style={{ cursor: 'pointer' }}>
           <img src={kantin} alt="Kantin" className="card-image" />
           <h3>Kantin</h3>
           <p>Makanan, minuman, dll.</p>
