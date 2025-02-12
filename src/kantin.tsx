@@ -6,8 +6,8 @@ import { IoCartOutline } from "react-icons/io5";
 import { MdHistory } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import Loading from "./loadingpage";
+import "./homepage.css";
 import "./kantin.css";
-import "./homepage.css"; // Import homepage CSS untuk menggunakan style yang sama
 import logo from "./assets/4 - Copy.png";
 import menuIcon from "./assets/menu.png";
 import searchIcon from "./assets/search.png";
@@ -97,7 +97,6 @@ interface Store {
   name: string;
   image: string;
   description: string;
-  status: "open" | "close";
 }
 
 const stores: Store[] = [
@@ -105,43 +104,37 @@ const stores: Store[] = [
     id: 1,
     name: "Kantin Op4t",
     image: kantinOp4t,
-    description: "Tempat makan seru dengan berbagai pilihan makanan enak, cocok untuk istirahat siswa.",
-    status: "open"
+    description: "Tempat makan seru dengan berbagai pilihan makanan enak, cocok untuk istirahat siswa."
   },
   {
     id: 2,
     name: "Bi Eem",
     image: biEem,
-    description: "Aneka gorengan dan minuman",
-    status: "close"
+    description: "Aneka gorengan dan minuman"
   },
   {
     id: 3,
     name: "Pojok jajan",
     image: pojokJajan,
-    description: "Tempat seru untuk camilan enak dan segar di setiap jam istirahat.",
-    status: "close"
+    description: "Tempat seru untuk camilan enak dan segar di setiap jam istirahat."
   },
   {
     id: 4,
     name: "Toko Sekolah Kita",
     image: tokoSekolah,
-    description: "Tempat semua kebutuhan sekolah dengan harga bersahabat untuk siswa.",
-    status: "close"
+    description: "Tempat semua kebutuhan sekolah dengan harga bersahabat untuk siswa."
   },
   {
     id: 5,
     name: "The Student Shop",
     image: studentShop,
-    description: "Toko lengkap dengan semua kebutuhan siswa, praktis dan terjangkau.",
-    status: "close"
+    description: "Toko lengkap dengan semua kebutuhan siswa, praktis dan terjangkau."
   },
   {
     id: 6,
     name: "Jajan Corner",
     image: jajanCorner,
-    description: "Sudut nyaman untuk jajan ringan yang selalu menggooda siswa.",
-    status: "close"
+    description: "Sudut nyaman untuk jajan ringan yang selalu menggooda siswa."
   }
 ];
 
@@ -212,14 +205,16 @@ const KantinPage: React.FC = () => {
             store.name.toLowerCase().includes(searchQuery.toLowerCase())
           )
           .map((store) => (
-            <div key={store.id} className="store-card">
+            <div 
+              key={store.id} 
+              className="store-card" 
+              onClick={() => store.name === "Kantin Op4t" ? navigate("/prdkkantin") : null}
+              style={{ cursor: store.name === "Kantin Op4t" ? "pointer" : "default" }}
+            >
               <img src={store.image} alt={store.name} className="store-image" />
               <div className="store-info">
                 <h3>{store.name}</h3>
                 <p>{store.description}</p>
-                <span className={`status-badge ${store.status}`}>
-                  {store.status.toUpperCase()}
-                </span>
               </div>
             </div>
           ))}

@@ -6,6 +6,7 @@ import App from "./loginpage.tsx";
 import Homepage from "./homepage.tsx"; 
 import MsgPage from "./msgpage.tsx";
 import KantinPage from "./kantin.tsx";
+import PrdkKantinPage from "./prdkkantin";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/homepage" element={<Homepage />} /> 
         <Route path="/msgpage" element={<MsgPage />} />
         <Route path="/kantin" element={<KantinPage />} />
+        <Route path="/prdkkantin" element={<PrdkKantinPage />} />
       </Routes>
     </Router>
   </StrictMode>
