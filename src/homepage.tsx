@@ -66,6 +66,10 @@ const Homepage: React.FC = () => {
     navigate("/kantin");  // Pastikan path sesuai dengan route
   };
 
+  const navigateToCart = () => {
+    navigate("/keranjang");
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -140,8 +144,8 @@ const Homepage: React.FC = () => {
       <div className="new-card">
         <h3>
           <IoHome />
-          <FiMessageSquare onClick={navigateToMsgPage} style={{ cursor: "pointer" }} /> {/* Add onClick */}
-          <IoCartOutline />
+          <FiMessageSquare onClick={navigateToMsgPage} style={{ cursor: "pointer" }} />
+          <IoCartOutline onClick={navigateToCart} style={{ cursor: "pointer" }} />
           <MdHistory onClick={toggleHistoryPopup} style={{ cursor: "pointer" }} />
           <CgProfile onClick={toggleProfilePopup} style={{ cursor: "pointer" }} />
         </h3>
