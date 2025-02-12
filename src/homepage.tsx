@@ -4,9 +4,6 @@ import { FiMessageSquare } from "react-icons/fi";
 import { IoCartOutline } from "react-icons/io5";
 import { MdHistory } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-import { FaRegSquarePlus } from "react-icons/fa6";
-import { BsQrCodeScan } from "react-icons/bs";
-import { IoArrowDownCircleOutline, IoArrowUpCircleOutline } from "react-icons/io5";
 import Loading from "./loadingpage";
 import { useNavigate } from "react-router-dom";  // Import useNavigate
 import "./homepage.css";
@@ -20,7 +17,6 @@ import avatar4 from "./assets/oreo.jpg";
 import avatar5 from "./assets/risol.jpg";
 import koperasi from "./assets/koperasi.jpeg";
 import kantin from "./assets/kantin.jpg";
-import profile from "./assets/user.png";
 import hydro from "./assets/galon.jpeg";
 
 interface ProfileCardProps {
@@ -97,36 +93,30 @@ const Homepage: React.FC = () => {
       </header>
 
       <div className="saldo-card">
-        <div className="saldo-title">Total Saldo</div>
-        <div className="saldo-content">
-          <div className="saldo-amount">Rp.999.999</div>
-          <div className="saldo-icons">
-            <div className="icon-item">
-              <BsQrCodeScan />
-              <span className="icon-label">QR</span>
-            </div>
-            <div className="icon-item">
-              <FaRegSquarePlus />
-              <span className="icon-label">Top Up</span>
-            </div>
-            <div className="icon-item">
-              <IoArrowDownCircleOutline />
-              <span className="icon-label">Tarik Tunai</span>
-            </div>
-            <div className="icon-item">
-              <IoArrowUpCircleOutline />
-              <span className="icon-label">Transfer</span>
-            </div>
-          </div>
-        </div>
+        <div className="led-text">Selamat Datang di Jajan4U!</div>
       </div>
 
       <div className="avatar-container">
-        <div className="avatar"><img src={avatar1} alt="Avatar 1" /></div>
-        <div className="avatar"><img src={avatar2} alt="Avatar 2" /></div>
-        <div className="avatar"><img src={avatar3} alt="Avatar 3" /></div>
-        <div className="avatar"><img src={avatar4} alt="Avatar 4" /></div>
-        <div className="avatar"><img src={avatar5} alt="Avatar 5" /></div>
+        <div className="avatar">
+          <img src={avatar1} alt="Avatar 1" />
+          <div className="avatar-hover-text">Burger</div>
+        </div>
+        <div className="avatar">
+          <img src={avatar2} alt="Avatar 2" />
+          <div className="avatar-hover-text">Pizza</div>
+        </div>
+        <div className="avatar">
+          <img src={avatar3} alt="Avatar 3" />
+          <div className="avatar-hover-text">Sushi</div>
+        </div>
+        <div className="avatar">
+          <img src={avatar4} alt="Avatar 4" />
+          <div className="avatar-hover-text">Pasta</div>
+        </div>
+        <div className="avatar">
+          <img src={avatar5} alt="Avatar 5" />
+          <div className="avatar-hover-text">Salad</div>
+        </div>
       </div>
 
       <div className="additional-cards">
