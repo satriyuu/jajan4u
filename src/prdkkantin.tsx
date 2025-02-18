@@ -74,7 +74,7 @@ const PrdkKantinPage: React.FC = () => {
       try {
         if (isMultiSeller && Array.isArray(sellerId)) {
           const promises = sellerId.map(id => 
-            fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/${id}`)
+            fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/${id}`)
               .then(res => res.json())
           );
           const results = await Promise.all(promises);
@@ -82,7 +82,7 @@ const PrdkKantinPage: React.FC = () => {
           setMenuItems(combinedMenus);
           setFilteredMenuItems(combinedMenus);
         } else {
-          const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/${sellerId}`);
+          const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/${sellerId}`);
           const data = await response.json();
           setMenuItems(data);
           setFilteredMenuItems(data);
@@ -130,14 +130,14 @@ const PrdkKantinPage: React.FC = () => {
         // Jika filter 'all', gunakan data yang sudah ada
         if (isMultiSeller && Array.isArray(sellerId)) {
           const promises = sellerId.map(id => 
-            fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/${id}`)
+            fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/${id}`)
               .then(res => res.json())
           );
           const results = await Promise.all(promises);
           const combinedMenus = results.flat();
           setFilteredMenuItems(combinedMenus);
         } else {
-          const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/${sellerId}`);
+          const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/${sellerId}`);
           const data = await response.json();
           setFilteredMenuItems(data);
         }
@@ -145,7 +145,7 @@ const PrdkKantinPage: React.FC = () => {
         // Gunakan endpoint filter baru
         const filterValue = type === 'food' ? 1 : 2;
         // Fetch sekali saja dari endpoint filter
-        const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/filter/${filterValue}`);
+        const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/filter/${filterValue}`);
         const data = await response.json();
         
         // Filter berdasarkan sellerId

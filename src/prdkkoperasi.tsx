@@ -63,7 +63,7 @@ const PrdkKoperasiPage: React.FC = () => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/1`);
+        const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/1`);
         const data = await response.json();
         setMenuItems(data);
         setFilteredMenuItems(data);
@@ -139,12 +139,12 @@ const PrdkKoperasiPage: React.FC = () => {
 
     try {
       if (type === 'all') {
-        const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/1`);
+        const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/1`);
         const data = await response.json();
         setFilteredMenuItems(data);
       } else {
         const filterValue = type === 'food' ? 1 : 2;
-        const response = await fetch(`https://7c9c-103-151-226-8.ngrok-free.app/menu/filter/${filterValue}`);
+        const response = await fetch(`https://52bd-114-10-146-138.ngrok-free.app/menu/filter/${filterValue}`);
         const data = await response.json();
         const filteredBySeller = data.filter((item: MenuItem) => 
           item.seller_id === 1
