@@ -43,7 +43,7 @@
 /* Menu & Search Icons */
 .menu-icon,
 .search-icon {
-  width: 15px; /* Sesuaikan ukuran icon */
+  width: 15px;
   height: auto;
   position: absolute;
   top: 50%;
@@ -60,17 +60,17 @@
 
 /* Search Input */
 .search-input {
-  padding: 0.5rem;
-  padding-left: 45px; /* Kurangi padding kiri */
-  padding-right: 45px;
-    font-size: 1rem;
-  border-radius: 20px; /* Kurangi radius */
-    border: 1px solid #ccc;
   width: 100%;
-  height: 45px; /* Kurangi tinggi search input */
+  padding: 0.5rem;
+  padding-left: 45px;
+  padding-right: 45px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  height: 45px;
   transition: all 0.3s ease;
   color: black;
-    background-color: white;
+  background-color: white;
 }
 
 /* Efek hover dan active untuk search input */
@@ -83,6 +83,7 @@
   border-color: #0A66A0;
   box-shadow: 0 0 8px rgba(10, 102, 160, 0.3);
   transform: scale(1.01);
+  outline: none;
 }
 
 .saldo-card {

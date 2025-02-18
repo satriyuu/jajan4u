@@ -97,44 +97,86 @@ interface Store {
   name: string;
   image: string;
   description: string;
+  seller_id: number | number[];
 }
 
 const stores: Store[] = [
   {
     id: 1,
-    name: "Kantin Op4t",
+    name: "Kantin Ibu Kosim",
     image: kantinOp4t,
-    description: "Tempat makan seru dengan berbagai pilihan makanan enak, cocok untuk istirahat siswa."
+    description: "Tempat makan seru dengan berbagai pilihan makanan enak, cocok untuk istirahat siswa.",
+    seller_id: 10
   },
   {
     id: 2,
-    name: "Bi Eem",
+    name: "Kantin Ibu Afikah",
     image: biEem,
-    description: "Aneka gorengan dan minuman"
+    description: "Aneka gorengan dan minuman",
+    seller_id: 8
   },
   {
     id: 3,
-    name: "Pojok jajan",
+    name: "Kantin Ibu Iin",
     image: pojokJajan,
-    description: "Tempat seru untuk camilan enak dan segar di setiap jam istirahat."
+    description: "Tempat seru untuk camilan enak dan segar di setiap jam istirahat.",
+    seller_id: 7
   },
   {
     id: 4,
-    name: "Toko Sekolah Kita",
+    name: "Kantin Ibu Irma",
     image: tokoSekolah,
-    description: "Tempat semua kebutuhan sekolah dengan harga bersahabat untuk siswa."
+    description: "Tempat semua kebutuhan sekolah dengan harga bersahabat untuk siswa.",
+    seller_id: 9
   },
   {
     id: 5,
-    name: "The Student Shop",
+    name: "Kantin Ibu Enok",
     image: studentShop,
-    description: "Toko lengkap dengan semua kebutuhan siswa, praktis dan terjangkau."
+    description: "Toko lengkap dengan semua kebutuhan siswa, praktis dan terjangkau.",
+    seller_id: 13
   },
   {
     id: 6,
-    name: "Jajan Corner",
+    name: "Kantin Ibu Lina",
     image: jajanCorner,
-    description: "Sudut nyaman untuk jajan ringan yang selalu menggooda siswa."
+    description: "Sudut nyaman untuk jajan ringan yang selalu menggoda siswa.",
+    seller_id: [5, 6]
+  },
+  {
+    id: 8,
+    name: "Kantin Pak Iwan",
+    image: biEem,
+    description: "Surga cemilan dengan berbagai pilihan snack lokal dan internasional.",
+    seller_id: 4
+  },
+  {
+    id: 9,
+    name: "Kantin Pak Didi",
+    image: pojokJajan,
+    description: "Makanan rumahan yang lezat dengan harga terjangkau.",
+    seller_id: 3
+  },
+  {
+    id: 10,
+    name: "Kantin Ibu Yuliani",
+    image: tokoSekolah,
+    description: "Minuman segar dan makanan ringan untuk energi sepanjang hari.",
+    seller_id: 2
+  },
+  {
+    id: 11,
+    name: "Kantin Pak Atep",
+    image: studentShop,
+    description: "Menyajikan berbagai makanan khas nusantara yang autentik.",
+    seller_id: 11
+  },
+  {
+    id: 12,
+    name: "Kantin Pak Maman",
+    image: jajanCorner,
+    description: "Kantin modern dengan sistem pemesanan digital.",
+    seller_id: 12
   }
 ];
 
@@ -142,6 +184,7 @@ const KantinPage: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredStores, setFilteredStores] = useState<Store[]>(stores);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
@@ -151,13 +194,32 @@ const KantinPage: React.FC = () => {
   }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
+    const query = event.target.value;
+    setSearchQuery(query);
+    
+    // Filter toko berdasarkan input search
+    if (query.trim() === "") {
+      setFilteredStores(stores);
+    } else {
+      const filtered = stores.filter(store =>
+        store.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredStores(filtered);
+    }
   };
 
   const handleSearchKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      alert(`Searching for: ${searchQuery}`);
+      // Filter toko saat user menekan Enter
+      if (searchQuery.trim() === "") {
+        setFilteredStores(stores);
+      } else {
+        const filtered = stores.filter(store =>
+          store.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredStores(filtered);
+      }
     }
   };
 
@@ -171,6 +233,30 @@ const KantinPage: React.FC = () => {
 
   const navigateToMsgPage = () => {
     navigate("/msgpage");
+  };
+
+  const navigateToCart = () => {
+    navigate("/keranjang");
+  };
+
+  const navigateToStore = (store: Store) => {
+    if (Array.isArray(store.seller_id)) {
+      navigate("/prdkkantin", { 
+        state: { 
+          sellerId: store.seller_id,
+          storeName: store.name,
+          isMultiSeller: true 
+        } 
+      });
+    } else if (store.seller_id > 0) {
+      navigate("/prdkkantin", { 
+        state: { 
+          sellerId: store.seller_id,
+          storeName: store.name,
+          isMultiSeller: false 
+        } 
+      });
+    }
   };
 
   if (loading) {
@@ -200,33 +286,44 @@ const KantinPage: React.FC = () => {
       </header>
 
       <div className="stores-grid">
-        {stores
-          .filter(store =>
-            store.name.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-          .map((store) => (
-            <div 
-              key={store.id} 
-              className="store-card" 
-              onClick={() => store.name === "Kantin Op4t" ? navigate("/prdkkantin") : null}
-              style={{ cursor: store.name === "Kantin Op4t" ? "pointer" : "default" }}
-            >
-              <img src={store.image} alt={store.name} className="store-image" />
-              <div className="store-info">
-                <h3>{store.name}</h3>
-                <p>{store.description}</p>
-              </div>
+        {filteredStores.map((store) => (
+          <div 
+            key={store.id} 
+            className="store-card" 
+            onClick={() => navigateToStore(store)}
+            style={{ cursor: store.seller_id > 0 ? "pointer" : "default" }}
+          >
+            <img src={store.image} alt={store.name} className="store-image" />
+            <div className="store-info">
+              <h3>{store.name}</h3>
+              <p>{store.description}</p>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
 
-      <div className="new-card">
+      <div className="navigatebar-card">
         <h3>
-          <IoHome onClick={() => navigate("/homepage")} style={{ cursor: "pointer" }} />
-          <FiMessageSquare onClick={navigateToMsgPage} style={{ cursor: "pointer" }} />
-          <IoCartOutline />
-          <MdHistory onClick={toggleHistoryPopup} style={{ cursor: "pointer" }} />
-          <CgProfile onClick={toggleProfilePopup} style={{ cursor: "pointer" }} />
+          <IoHome 
+            onClick={() => navigate("/homepage")} 
+            style={{ cursor: "pointer" }} 
+          />
+          <FiMessageSquare 
+            onClick={navigateToMsgPage} 
+            style={{ cursor: "pointer" }} 
+          />
+          <IoCartOutline 
+            onClick={navigateToCart} 
+            style={{ cursor: "pointer" }} 
+          />
+          <MdHistory 
+            onClick={toggleHistoryPopup} 
+            style={{ cursor: "pointer" }} 
+          />
+          <CgProfile 
+            onClick={toggleProfilePopup} 
+            style={{ cursor: "pointer" }} 
+          />
         </h3>
       </div>
 

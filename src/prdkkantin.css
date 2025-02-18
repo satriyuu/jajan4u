@@ -127,11 +127,61 @@
 }
 
 .prdkantin-header {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.prdkantin-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prdkantin-title-card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 900px;
   background-color: #0A66A0;
-  padding: 1rem;
+  border-radius: 15px;
+  padding: 30px 35px;
+  margin-top: -120px;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.25),  /* Shadow utama solid */
+              0 6px 0px rgba(0, 0, 0, 0.15),  /* Shadow kedua solid */
+              0 8px 0px rgba(0, 0, 0, 0.1);  /* Shadow ketiga solid */
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.prdkantin-title-card:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 0px rgba(0, 0, 0, 0.25),  /* Shadow utama solid */
+              0 8px 0px rgba(0, 0, 0, 0.15),  /* Shadow kedua solid */
+              0 10px 0px rgba(0, 0, 0, 0.1);  /* Shadow ketiga solid */
+}
+
+.prdkantin-title-content {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 25px;
+}
+
+.prdkantin-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.prdkantin-title-content h1 {
+  margin: 0;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
 .prdkantin-profile {
@@ -175,8 +225,8 @@
 }
 
 .prdkantin-list {
-  padding: 1rem;
-  padding-bottom: calc(1rem + 80px); /* 80px untuk space bottom nav */
+  padding: 0.5rem 1rem;
+  padding-bottom: calc(1rem + 80px);
 }
 
 .prdkantin-item {
@@ -276,6 +326,248 @@
 
   .prdkantin-grid img {
     height: 100px;
+  }
+
+  .prdkantin-title-card {
+    width: 90%;
+    padding: 25px 30px;
+  }
+
+  .prdkantin-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .prdkantin-title-content h1 {
+    font-size: 2rem;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1rem;
+  background: white;
+  border-radius: 8px;
+  margin: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tambahkan style untuk filter */
+.filter-container {
+  background: white;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filter-button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-button.active {
+  background-color: #0A66A0;
+  color: white;
+  box-shadow: 0 2px 4px rgba(10, 102, 160, 0.2);
+}
+
+.filter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filter-button svg {
+  font-size: 1.1rem;
+}
+
+.filter-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Tambahkan div kosong untuk spacing */
+.spacing-div {
+  height: 30px; /* Kurangi dari 60px */
+  margin-top: 20px; /* Kurangi dari 40px */
+}
+
+.prdkantin-recommendations {
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Jika ada 2 item */
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(2)) {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(2)) .polaroid-card:nth-child(1) {
+  grid-column: 2;
+}
+
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(2)) .polaroid-card:nth-child(2) {
+  grid-column: 3;
+}
+
+/* Jika ada 3 item */
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(3)) {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(3)) .polaroid-card:nth-child(1) {
+  grid-column: 1;
+}
+
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(3)) .polaroid-card:nth-child(2) {
+  grid-column: 2;
+}
+
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(3)) .polaroid-card:nth-child(3) {
+  grid-column: 3;
+}
+
+/* Jika ada 1 item */
+.recommendations-grid:has(.polaroid-card:first-child:nth-last-child(1)) .polaroid-card {
+  grid-column: 2 / 4;
+}
+
+.polaroid-card {
+  background: white;
+  padding: 10px 10px 20px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+}
+
+.polaroid-card:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.polaroid-card:hover {
+  transform: rotate(0) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.polaroid-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.polaroid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  text-align: center;
+  position: relative;
+  padding-bottom: 30px; /* Tambah ruang untuk icon */
+}
+
+.polaroid-caption h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.polaroid-caption p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.polaroid-add-btn {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  color: #0A66A0;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.polaroid-add-btn:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .recommendations-grid:has(.polaroid-card) .polaroid-card {
+    grid-column: auto;
+  }
+
+  .polaroid-image {
+    height: 120px;
+  }
+
+  .polaroid-caption h3 {
+    font-size: 0.9rem;
+  }
+
+  .polaroid-caption p {
+    font-size: 0.8rem;
+  }
+
+  .polaroid-add-btn {
+    font-size: 1.8rem;
+    bottom: -3px;
+    right: -3px;
+  }
+
+  .prdkantin-recommendations {
+    margin-top: 100px;
   }
 }
 

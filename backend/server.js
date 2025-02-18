@@ -2,15 +2,22 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const bcrypt = require("bcrypt");
+const { Pool } = require("pg");
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Konfigurasi PostgreSQL Pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL
+});
+
 // Konfigurasi CORS agar hanya menerima request dari frontend
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://87f0-114-10-148-241.ngrok-free.app"
+  "http://localhost:5174",
+  "https://2955-114-10-149-234.ngrok-free.app",
 ];
 
 app.use(
@@ -22,38 +29,42 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const USERS_API = "https://87f0-114-10-148-241.ngrok-free.app/users";
+const USERS_API = "https://2955-114-10-149-234.ngrok-free.app/users";
 
-// Endpoint login
-app.post("/api/login", async (req, res) => {
+// Endpoint login dengan database
+app.get('/login', async (req, res) => {
+  const { nis, password } = req.body;
+
   try {
-    const { nis, password } = req.body;
+    // Cek apakah user dengan NIS tersebut ada di database
+    const user = await pool.query('SELECT * FROM users WHERE nis = $1', [nis]);
 
-    // Ambil data user dari API ngrok
-    const response = await axios.get(USERS_API);
-    const users = response.data; // Data berupa array objek
-
-    // Cari user berdasarkan NIS dan password
-    const user = users.find((u) => u.nis === nis && u.password === password);
-
-    if (user) {
-      res.json({
-        message: "Login berhasil!",
-        user: {
-          user_id: user.user_id,
-          nis: user.nis,
-          role: user.role,
-          email: user.email,
-          phone_number: user.phone_number,
-          kelas: user.kelas, // Pastikan nama field sesuai dengan API
-        },
-      });
-    } else {
-      res.status(401).json({ message: "Login gagal, periksa NIS & password." });
+    if (user.rows.length === 0) {
+      return res.status(400).json({ message: 'NIS atau password salah' });
     }
-  } catch (error) {
-    console.error("Error saat login:", error.message);
-    res.status(500).json({ message: "Terjadi kesalahan server", error: error.message });
+
+    // Ambil password yang sudah di-hash dari database
+    const hashedPassword = user.rows[0].password;
+
+    // Bandingkan password yang dikirim dengan yang ada di database
+    const isMatch = await bcrypt.compare(password, hashedPassword);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: 'NIS atau password salah' });
+    }
+
+    // Jika login sukses, kirim data user (tanpa password)
+    res.json({
+      user_id: user.rows[0].user_id,
+      nis: user.rows[0].nis,
+      email: user.rows[0].email,
+      phone_number: user.rows[0].phone_number,
+      kelas: user.rows[0].kelas
+    });
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

@@ -18,6 +18,7 @@ import avatar5 from "./assets/risol.jpg";
 import koperasi from "./assets/koperasi.jpeg";
 import kantin from "./assets/kantin.jpg";
 import hydro from "./assets/galon.jpeg";
+import axios from "axios";
 
 interface ProfileCardProps {
   onClose: () => void;
@@ -68,6 +69,14 @@ const Homepage: React.FC = () => {
 
   const navigateToCart = () => {
     navigate("/keranjang");
+  };
+
+  const navigateToKoperasi = () => {
+    navigate("/prdkkoperasi");
+  };
+
+  const navigateToHydro4 = () => {
+    navigate("/hydro4");
   };
 
   if (loading) {
@@ -124,7 +133,7 @@ const Homepage: React.FC = () => {
       </div>
 
       <div className="additional-cards">
-        <div className="card">
+        <div className="card" onClick={navigateToKoperasi} style={{ cursor: 'pointer' }}>
           <img src={koperasi} alt="Koperasi" className="card-image" />
           <h3>Koperasi</h3>
           <p>ATK, makanan, minuman, dll.</p>
@@ -134,7 +143,7 @@ const Homepage: React.FC = () => {
           <h3>Kantin</h3>
           <p>Makanan, minuman, dll.</p>
         </div>
-        <div className="card">
+        <div className="card" onClick={navigateToHydro4} style={{ cursor: 'pointer' }}>
           <img src={hydro} alt="Camilan" className="card-image" />
           <h3>Hydro4</h3>
           <p>Isi ulang galon</p>
@@ -163,6 +172,34 @@ const Homepage: React.FC = () => {
 };
 
 const ProfileCard = ({ onClose }: ProfileCardProps) => {
+  const [profileData, setProfileData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get("https://2955-114-10-149-234.ngrok-free.app/users");
+        const users = response.data;
+        // Misalnya, ambil data user pertama untuk ditampilkan
+        setProfileData(users[0]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!profileData) {
+    return <div>Error loading profile data.</div>;
+  }
+
   return (
     <div className="profile-card">
       <div className="profile-header">
@@ -179,27 +216,27 @@ const ProfileCard = ({ onClose }: ProfileCardProps) => {
       <div className="profile-content">
         <div className="profile-item">
           <span className="profile-label">Nama lengkap</span>
-          <span className="profile-value">Raka Pratama Domingoz</span>
+          <span className="profile-value">{profileData.email}</span>
         </div>
 
         <div className="profile-item">
           <span className="profile-label">Nomor ponsel</span>
-          <span className="profile-value">(+62) 12345678</span>
+          <span className="profile-value">{profileData.phone_number}</span>
         </div>
 
         <div className="profile-item">
           <span className="profile-label">NIS</span>
-          <span className="profile-value">2223119599</span>
+          <span className="profile-value">{profileData.nis}</span>
         </div>
 
         <div className="profile-item">
           <span className="profile-label">Alamat email</span>
-          <span className="profile-value">rakaprtmd@example.com</span>
+          <span className="profile-value">{profileData.email}</span>
         </div>
 
         <div className="profile-item">
-          <span className="profile-label">Jenis kelamin</span>
-          <span className="profile-value">Laki-laki</span>
+          <span className="profile-label">Kelas</span>
+          <span className="profile-value">{profileData.kelas}</span>
         </div>
 
         <button className="sign-out-btn">Sign Out</button>

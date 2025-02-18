@@ -26,7 +26,7 @@ const App: React.FC = () => {
     setLoading(true); // Tampilkan loading saat login
 
     try {
-      const response = await axios.post("https://87f0-114-10-148-241.ngrok-free.app/users", {
+      const response = await axios.get("https://2955-114-10-149-234.ngrok-free.app/users", {
         nis,
         password,
       });

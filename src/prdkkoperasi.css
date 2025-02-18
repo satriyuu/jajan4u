@@ -1,0 +1,216 @@
+.prdkantin-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-bottom: 80px;
+}
+
+/* ... sisanya sama persis dengan prdkkantin.css ... */
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1rem;
+  background: white;
+  border-radius: 8px;
+  margin: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Copy semua style dari prdkkantin.css yang berhubungan dengan rekomendasi */
+.prdkantin-recommendations {
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.polaroid-card {
+  background: white;
+  padding: 10px 10px 20px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+}
+
+.polaroid-card:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.polaroid-card:hover {
+  transform: rotate(0) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.polaroid-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.polaroid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  text-align: center;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.polaroid-caption h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.polaroid-caption p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.polaroid-add-btn {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  color: #0A66A0;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.polaroid-add-btn:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.spacing-div {
+  height: 30px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .polaroid-image {
+    height: 120px;
+  }
+
+  .polaroid-caption h3 {
+    font-size: 0.9rem;
+  }
+
+  .polaroid-caption p {
+    font-size: 0.8rem;
+  }
+
+  .polaroid-add-btn {
+    font-size: 1.8rem;
+    bottom: -3px;
+    right: -3px;
+  }
+
+  .prdkantin-recommendations {
+    margin-top: 100px;
+  }
+}
+
+/* Tambahkan style untuk header dan title card */
+.prdkantin-header {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.prdkantin-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prdkantin-title-card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 900px;
+  background-color: #0A66A0;
+  border-radius: 15px;
+  padding: 30px 35px;
+  margin-top: -120px;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.25),  /* Shadow utama solid */
+              0 6px 0px rgba(0, 0, 0, 0.15),  /* Shadow kedua solid */
+              0 8px 0px rgba(0, 0, 0, 0.1);  /* Shadow ketiga solid */
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.prdkantin-title-card:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 0px rgba(0, 0, 0, 0.25),  /* Shadow utama solid */
+              0 8px 0px rgba(0, 0, 0, 0.15),  /* Shadow kedua solid */
+              0 10px 0px rgba(0, 0, 0, 0.1);  /* Shadow ketiga solid */
+}
+
+.prdkantin-title-content {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.prdkantin-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.prdkantin-title-content h1 {
+  margin: 0;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .prdkantin-title-card {
+    width: 90%;
+    padding: 25px 30px;
+  }
+
+  .prdkantin-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .prdkantin-title-content h1 {
+    font-size: 2rem;
+  }
+}

@@ -28,28 +28,7 @@ interface CheckoutFormData {
 
 const Keranjang: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "Burger Burgar",
-      price: 30000,
-      quantity: 1,
-      description: "Deskripsi toko",
-      image: "./src/assets/burger.jpg",
-      store: "Kantin Op4t",
-      checked: false
-    },
-    {
-      id: 2,
-      name: "Risoles Mamayo",
-      price: 5000,
-      quantity: 1,
-      description: "Deskripsi toko",
-      image: "./src/assets/risol.jpg",
-      store: "Koperasi Op4t",
-      checked: false
-    }
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [formData, setFormData] = useState<CheckoutFormData>({
@@ -64,9 +43,22 @@ const Keranjang: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const loadCartItems = () => {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+      setLoading(false);
+    };
+
+    loadCartItems();
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+  }, [cartItems, loading]);
 
   if (loading) {
     return <Loading />;
@@ -75,13 +67,25 @@ const Keranjang: React.FC = () => {
   const updateQuantity = (id: number, increment: boolean) => {
     setCartItems(cartItems.map(item => {
       if (item.id === id) {
+        const newQuantity = increment ? item.quantity + 1 : item.quantity - 1;
+        
+        // Jika quantity menjadi 0, hapus item dari keranjang
+        if (newQuantity === 0) {
+          // Tampilkan konfirmasi sebelum menghapus
+          const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang?');
+          if (confirmDelete) {
+            return null; // Item akan dihapus di filter berikutnya
+          }
+          return item; // Jika user membatalkan, kembalikan item tanpa perubahan
+        }
+
         return {
           ...item,
-          quantity: increment ? item.quantity + 1 : Math.max(1, item.quantity - 1)
+          quantity: newQuantity
         };
       }
       return item;
-    }));
+    }).filter(Boolean) as CartItem[]); // Filter null items
   };
 
   const handleStoreCheck = (store: string, checked: boolean) => {
@@ -174,7 +178,10 @@ const Keranjang: React.FC = () => {
                       <p className="item-price">Rp. {item.price.toLocaleString()}</p>
                     </div>
                     <div className="quantity-controls">
-                      <button onClick={() => updateQuantity(item.id, false)}>
+                      <button 
+                        onClick={() => updateQuantity(item.id, false)}
+                        title={item.quantity === 1 ? "Hapus dari keranjang" : "Kurangi jumlah"}
+                      >
                         <IoRemoveCircleOutline />
                       </button>
                       <span>{item.quantity}</span>
